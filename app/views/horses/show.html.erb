@@ -1,0 +1,6 @@
+<%= @horse.name %>
+<%= @horse.description %>
+
+<% if current_user.id == @horse.user_id  %>
+  <%= link_to 'Delete', horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"}  %>
+<% end %>

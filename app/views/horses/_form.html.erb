@@ -1,0 +1,10 @@
+<%= simple_form_for(@horse) do |f| %>
+  <%= f.input :name  %>
+  <%= f.input :breed, :collection => ['arab', 'warmblood', 'pony', 'throughbred', 'icelandic', 'coldblood', 'mustang']%>
+  <%= f.input :colour, :collection => ['bay', 'chestnut', 'grey', 'black', 'buckskin', 'palomino', 'pinto', 'leopard', 'appaloosa'] %>
+  <%= f.input :discipline, :collection => ['show jumper', 'school master', 'dressage horse', 'general usage', 'eventer', 'rogue', 'driving']%>
+  <%= f.input :height %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.submit 'save' %>
+<% end %>

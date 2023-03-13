@@ -7,7 +7,7 @@ ruby "3.1.2"
 gem "devise"
 
 #faker
-
+#somgthing
 gem "faker"
 
 # #typed js

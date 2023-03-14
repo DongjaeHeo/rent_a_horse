@@ -1,0 +1,28 @@
+<h2>All the bookings</h2>
+
+<% @bookings.each do |booking| %>
+  <%= link_to horse_booking_path(booking.horse ,booking)   do %>
+    <%= booking.horse.name %>
+    <p><%= booking.start_date %>
+    <%= booking.end_date %>
+    </p>
+  <% end %>
+
+<% end %>
+
+<% @horses.each do |horse| %>
+  <p>
+    <%= horse.name  %>
+    <% horse.bookings.each do |booking| %>
+       <p><%= booking.start_date %>
+        <%= booking.end_date %>
+        <%= booking.confirmed %>
+        <% unless booking.confirmed %>
+          <%= link_to confirm_horse_booking_path(horse, booking) do %>
+            <p>Confirm the booking</p>
+          <% end %>
+        <% end %>
+        </p>
+    <% end %>
+  </p>
+<% end %>

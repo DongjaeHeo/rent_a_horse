@@ -7,4 +7,10 @@ class Horse < ApplicationRecord
   validates :location, presence: true
   validates :discipline, presence: true, inclusion: { in: ['show jumper', 'school master', 'dressage horse', 'general usage', 'eventer', 'rogue', 'driving']}
   validates :height, numericality: { integer: true, less_than_or_equal_to: 220 }
+  has_one_attached :photo
+
+  def available?(from, to)
+    bookings.where('start_date <= ? AND end_date >= ?', to, from).none?
+  end
+
 end

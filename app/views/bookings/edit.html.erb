@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <% if current_user.id == @user.id %>
+    <% unless @booking.confirmed %>
+      <%= render 'form', horse: @horse, booking: @booking %>
+    <% end %>
+  <% end %>
+<% end %>

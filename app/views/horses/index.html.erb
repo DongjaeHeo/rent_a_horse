@@ -1,3 +1,5 @@
 <% @horses.each do |horse| %>
-  <%= horse.name %>
+  <%= link_to horse_path(horse) do %>
+    <%= horse.name %>
+  <% end %>
 <% end %>

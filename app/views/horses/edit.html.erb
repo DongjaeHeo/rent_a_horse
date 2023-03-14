@@ -1,3 +1,11 @@
-<h2>Edit your horse's details: <%= @horse.name %></h2>
+<% if user_signed_in? %>
+  <% if current_user.id == @horse.user_id%>
 
-<%= render "form", horse: @horse %>
+    <h2>Edit your horse's details: <%= @horse.name %></h2>
+
+    <%= render "form", horse: @horse %>
+  <% end %>
+<% else %>
+  <%= @horse.name %>
+  <p>You'er not athoursized to be here (demo bitch!!)</p>
+<% end %>

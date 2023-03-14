@@ -1,0 +1,4 @@
+<h1>New</h1>
+<% if user_signed_in? %>
+  <%= render 'form', horse: @horse, booking: @booking %>
+<% end %>

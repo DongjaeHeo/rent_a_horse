@@ -1,0 +1,11 @@
+<h1>Booking</h1>
+
+<%= @booking.start_date %>
+
+<% if @booking.user_id == current_user.id %>
+  <% if @booking.confirmed  %>
+    <p>Contact owner for changes</p>
+  <% else %>
+    <%= link_to 'Cancel your booking', booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% end %>
+<% end %>

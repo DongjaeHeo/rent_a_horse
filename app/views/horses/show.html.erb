@@ -1,6 +1,11 @@
 <%= @horse.name %>
 <%= @horse.description %>
 
-<% if current_user.id == @horse.user_id  %>
-  <%= link_to 'Delete', horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"}  %>
+<% if user_signed_in?  %>
+  <% if current_user.id == @horse.user_id %>
+    <%= link_to 'Delete', horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"}  %>
+    <%= link_to 'Edit', edit_horse_path(@horse)  %>
+  <% end %>
 <% end %>
+
+<%= link_to 'Booking', new_horse_booking_path(@horse) %>

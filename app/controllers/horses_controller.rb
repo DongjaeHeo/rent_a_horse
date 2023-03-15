@@ -2,6 +2,15 @@ class HorsesController < ApplicationController
   before_action :set_horse, only: [:show, :edit, :update, :destroy]
   def index
     @horses = Horse.all
+    # The `geocoded` scope filters only horses with coordinates
+    @markers = @horses.geocoded.map do |horse|
+      {
+        lat: horse.latitude,
+        lng: horse.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { horse: horse }),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   def new

@@ -1,5 +1,22 @@
-<% @horses.each do |horse| %>
-  <%= link_to horse_path(horse) do %>
-    <%= horse.name %>
+<div style="width: 100%; height: 300px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+
+<div class="container">
+  <% @horses.each do |horse| %>
+      <div class="card-trip">
+        <%= link_to horse_path(horse) do %>
+          <%= cl_image_tag horse.photo.key, height: 300, width: 400, crop: :fill %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= horse.name %></h2>
+              <p><%= horse.description %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
   <% end %>
-<% end %>
+</div>

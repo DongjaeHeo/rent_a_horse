@@ -14,6 +14,9 @@ gem "faker"
 
 # gem "typed_js"
 
+# Gemfile
+gem "geocoder"
+
 # cludinary
 gem "dotenv-rails", groups: [:development, :test]
 

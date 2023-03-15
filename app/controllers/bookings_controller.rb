@@ -37,15 +37,10 @@ class BookingsController < ApplicationController
   def update
     @horse = Horse.find(params[:horse_id])
     @user = User.find(@booking.user_id)
-    @booking_new = Booking.new(booking_params)
-    if @horse.available?(@booking_new.start_date, @booking_new.end_date)
-      @booking.update(booking_params)
+    @booking.errors.add(:booking, 'Horse is already booked') unless @horse.available?(params[:booking][:start_date], params[:booking][:end_date])
+    if @booking.update(booking_params)
       redirect_to horse_booking_path(@horse, @booking)
     else
-      # if @user == current_user
-      #   @booking.update(booking_params)
-      # end
-      @booking.errors.add(:booking, 'Horses is booked')
       render :edit, status: :unprocessable_entity
     end
   end

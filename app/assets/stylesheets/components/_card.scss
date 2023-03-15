@@ -1,8 +1,18 @@
 .card-trip {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 9px 3px rgba(10, 10, 10, 0.2);
   width: 300px;
+  border-radius: 5px;
+  color: black;
+  background: $viridian;
+  a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+  &:hover {
+  box-shadow: 0px 0px 9px 3px $eggplant;
+  }
 }
 
 .card-trip > img {

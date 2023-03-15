@@ -5,13 +5,13 @@
 </div>
 
 
-<div class="container">
+<div class="container main">
   <% @horses.each do |horse| %>
       <div class="card-trip">
         <%= link_to horse_path(horse) do %>
           <%= cl_image_tag horse.photos.first.key, height: 300, width: 400, crop: :fill %>
           <div class="card-trip-infos">
-            <div>
+            <div >
               <h2><%= horse.name %></h2>
               <p><%= horse.description %></p>
             </div>

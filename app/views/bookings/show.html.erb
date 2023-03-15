@@ -1,11 +1,29 @@
-<h1>Booking</h1>
-
-<%= @booking.start_date %>
-
-<% if @booking.user_id == current_user.id %>
-  <% if @booking.confirmed  %>
-    <p>Contact owner for changes</p>
-  <% else %>
-    <%= link_to 'Cancel your booking', booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <% end %>
-<% end %>
+<div class=container>
+  <div class="d-flex justify-content-center">
+      <%= image_tag 'Booking.jpg', class: "w-50"  %>
+    <%# booking conf details %>
+    <div class="card-booking">
+      <h1 class="headings">Congratulations <%= current_user.name %>!</h1>
+      <div>
+        <h2 class="headings">Here are the details of your booking:</h2>
+          <p>Start date: <%= @booking.start_date %></p>
+          <p>End date: <%= @booking.end_date %></p>
+          <p>Booking status: <%= @booking.confirmed %></p>
+          <% if @booking.user_id == current_user.id %>
+          <% if @booking.confirmed  %>
+            <p>Contact owner for changes</p>
+          <% else %>
+            <%= link_to 'Cancel your booking', booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <h2 class="headings">Horse Details:</h2>
+        <p>Horse name: <%= @booking.horse.name %></p>
+        <p>Location: <%= @booking.horse.location %></p>
+        <p>Description: <%= @booking.horse.description %></p>
+        <%= link_to 'See more', horse_path(@booking.horse) %>
+      </div>
+    </div>
+  </div>
+</div>

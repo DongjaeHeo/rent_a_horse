@@ -1,11 +1,39 @@
-<%= @horse.name %>
-<%= @horse.description %>
 
-<% if user_signed_in?  %>
-  <% if current_user.id == @horse.user_id %>
-    <%= link_to 'Delete', horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"}  %>
-    <%= link_to 'Edit', edit_horse_path(@horse)  %>
-  <% end %>
-<% end %>
 
-<%= link_to 'Booking', new_horse_booking_path(@horse) %>
+<div class="container">
+  <div class="d-flex relative-position">
+    <div><%= cl_image_tag @horse.photos.first.key, height: 800, width: 800, crop: :fill %></div>
+    <div>
+      <div>
+        <h2><%= @horse.name %></h2>
+        <p><%= @horse.description %></p>
+      </div>
+      <div class="display-4 fw-bold text-black text-start mt-0 mb-0 absolute-position">
+        <div >
+          <% if user_signed_in?  %>
+            <% if current_user.id == @horse.user_id %>
+              <%= link_to 'Delete', horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"}  %>
+              <%= link_to 'Edit', edit_horse_path(@horse)  %>
+            <% else %>
+              <%= link_to 'Booking', new_horse_booking_path(@horse) %>
+            <% end %>
+          <% end %>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="cards d-flex">
+    <% @horse.photos.each do |photo| %>
+      <div class="card-category">
+        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill%>
+      </div>
+    <% end %>
+  </div>
+</div>

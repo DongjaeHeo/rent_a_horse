@@ -1,7 +1,11 @@
 class HorsesController < ApplicationController
   before_action :set_horse, only: [:show, :edit, :update, :destroy]
   def index
-    @horses = Horse.all
+    if params[:query].present?
+      @horses = Horse.search_horse_by_name_and_features(params[:query])
+    else
+      @horses = Horse.all
+    end
     # The `geocoded` scope filters only horses with coordinates
     @markers = @horses.geocoded.map do |horse|
       {

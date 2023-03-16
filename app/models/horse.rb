@@ -10,6 +10,12 @@ class Horse < ApplicationRecord
   has_many_attached :photos
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+  include PgSearch::Model
+  pg_search_scope :search_horse_by_name_and_features,
+                  against: [:name, :colour, :breed, :location, :discipline, :description],
+                  using: {
+                          tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  }
 
   def available?(from, to)
     bookings.where('start_date <= ? AND end_date >= ?', to, from).none?

@@ -10,5 +10,8 @@ application.register("hello", HelloController)
 import HorsePhotosController from "./horse_photos_controller"
 application.register("horse-photos", HorsePhotosController)
 
+import LocationAutocompleteController from "./location_autocomplete_controller"
+application.register("location-autocomplete", LocationAutocompleteController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)

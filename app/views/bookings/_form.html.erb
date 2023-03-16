@@ -1,12 +1,20 @@
 
-<%= simple_form_for([horse, booking]) do |f| %>
-  <% if booking.errors.any? %>
-    <% booking.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
-    <% end %>
-  <% end %>
-  <%= f.date_field :start_date, min: Date.tomorrow %>
-  <%= f.date_field :end_date, min: Date.tomorrow %>
-  <%= f.submit %>
 
-<% end %>
+  <%= simple_form_for([horse, booking]) do |f| %>
+
+
+
+
+    <div>
+      <div class="m-3">
+        <%= f.date_field :start_date, min: Date.tomorrow %>
+      </div>
+      <div class="m-3">
+        <%= f.date_field :end_date, min: Date.tomorrow %>
+      </div>
+      <div class="m-3">
+        <%= f.submit %>
+      </div>
+    </div>
+
+  <% end %>

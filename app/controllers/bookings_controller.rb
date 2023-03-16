@@ -18,15 +18,14 @@ class BookingsController < ApplicationController
 
     if @horse.available?(@booking.start_date, @booking.end_date)
       if @booking.save
-        redirect_to horse_booking_path(@horse, @booking)
+        redirect_to dashboard_path
       else
-        render :new, status: :unprocessable_entity
+        redirect_to horse_path(@horse), status: :unprocessable_entity
       end
     else
-      @booking.errors.add(:booking, 'Horses is booked')
-      render :new, status: :unprocessable_entity
+      redirect_to horse_path(@horse), status: :unprocessable_entity
+      flash[:alert] = "The horse is already booked on that day"
     end
-
   end
 
   def edit

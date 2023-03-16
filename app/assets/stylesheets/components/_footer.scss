@@ -1,0 +1,18 @@
+.footer {
+  height: 55px;
+  background: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $viridian;
+  text-align: center;
+  p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+  }
+}
+
+.fa-heart {
+  color: red;
+}

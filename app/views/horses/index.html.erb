@@ -1,31 +1,37 @@
-<div style="width: 100%; height: 300px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
-<%= form_with url: root_path, method: :get, class: "d-flex" do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find your dream horse"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
-
-
-<div class="container main">
-  <% @horses.each do |horse| %>
-      <div class="card-trip">
-        <%= link_to horse_path(horse) do %>
-          <%= cl_image_tag horse.photos.first.key, height: 300, width: 400, crop: :fill %>
-          <div class="card-trip-infos">
-            <div >
-              <h2><%= horse.name %></h2>
-              <p><%= horse.description %></p>
+    <%# SEARCH LINE %>
+    <div class="search-field">
+      <%= form_with url: root_path, method: :get, class: "d-flex search-line" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find your dream horse"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+<%# CONTAINER FOR WHOLE PAGE %>
+<div class="total">
+  <%# HORSE CARD CONTAINER %>
+  <div class="main">
+    <% @horses.each do |horse| %>
+        <div class="card-trip">
+          <%= link_to horse_path(horse) do %>
+            <%= cl_image_tag horse.photos.first.key, height: 150, width: 250, crop: :fill %>
+            <div class="card-trip-infos">
+              <div >
+                <h2><%= horse.name %></h2>
+                <p><%= horse.description %></p>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-  <% end %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+  <%# MAP %>
+  <div style="width: 100%; height: 100%vh;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    id="map">
+  </div>
 </div>

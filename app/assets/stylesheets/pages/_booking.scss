@@ -1,13 +1,10 @@
 .booking {
-  background-color: white;
-  height: 900px;
-  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
 }
 
-.card-booking {
-  background-color: #FFE2D1;
-}
-
-.headings {
-  color: #5E4C5A;
+.card-trip .card-trip-infos {
+  padding: 16px;
+  position: relative;
 }

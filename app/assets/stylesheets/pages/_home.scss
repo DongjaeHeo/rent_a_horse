@@ -1,6 +1,6 @@
 // Specific CSS for your home-page
 body {
-  background-color: $cambridge_blue;
+  background-color: whitesmoke;
 }
 
 .main {
@@ -10,4 +10,8 @@ body {
   justify-items: center;
   padding: 30px;
   background-color: $pinkish;
+}
+
+a {
+  text-decoration: none;
 }

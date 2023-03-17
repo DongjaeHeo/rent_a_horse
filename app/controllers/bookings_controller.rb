@@ -48,8 +48,9 @@ class BookingsController < ApplicationController
   end
 
   def confirm
+    @horse = Horse.find(params[:horse_id])
     @booking.confirm!
-    redirect_to dashboard_path
+    redirect_to horse_path(@horse)
   end
 
   def destroy

@@ -6,33 +6,52 @@
 
 .image-card {
   width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .btn-pending {
   border-radius: 30px;
   color: red;
   border-color: red;
-  --bs-btn-line-height: 0.6px;
-  --bs-btn-hover-border-color: rgb(255, 220, 45);
-  --bs-btn-hover-color: rgb(255, 220, 45);
+  --bs-btn-line-height: 0.9px;
+  --bs-btn-hover-border-color: red;
+  --bs-btn-hover-color: red;
   font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 7px;
+  padding-bottom: 5px;
   padding-right: 10px;
 }
 
 .fa-solid {
   margin-right: 3px;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 7px;
   padding-right: 5px;
 }
 
 .booking-card {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .booking-heading {
   margin-top: 50px;
   text-align: center;
+}
+
+.d-flex {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.position {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+.my-horse {
+  margin-bottom: 30px;
 }

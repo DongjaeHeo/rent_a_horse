@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>Welcome to your dashboard, <%= current_user.name %></h4>
+  <h5 class="text-center">Welcome to your dashboard, <%= current_user.name %></h4>
 
 
 
@@ -9,25 +9,29 @@
   <div class="main booking-card">
     <% @bookings.each do |booking| %>
 
-        <div class="card-trip" data-controller="toggle">
+        <div class="card-trip" data-controller="toggle confetti">
           <%= link_to horse_path(booking.horse) do %>
             <%= cl_image_tag booking.horse.photos.first.key, height: 150, width: 250, crop: :fill %>
           <% end %>
             <div>
               <div>
                 <h2>Horse: <%= booking.horse.name %></h2>
-                <p>Start date: <%= booking.start_date %></p>
-                <p>End date: <%= booking.end_date %></p>
-                <div class="d-flex align-items-center justify-content-end">
+                <p><strong>From:</strong> <%= booking.start_date %></p>
+                <p><strong>To:</strong> <%= booking.end_date %></p>
+                <% if booking.confirmed == false %>
+                  <div class="d-flex align-items-center justify-content-end">
                   <i class="fa-solid fa-pen bi-justify-right text-white mr-5" data-action="click->toggle#open"></i>
-                  <div class="d-none" data-toggle-target="form">
-                    <%= render "bookings/form", horse: booking.horse, booking: booking %>
-                  </div>
+                    <div class="d-none position" data-toggle-target="form">
+                      <%= render "bookings/form", horse: booking.horse, booking: booking %>
+                    </div>
                     <div class="ml-3">
                       <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  do %>
                         <i class="fa-solid fa-trash ml-3"></i>
+                      <% end %>
                     </div>
-                </div>
+                  </div>
+                <% else %>
+                  <p><strong>Booking status:</strong> <i class="fa-solid fa-circle-check"></i></p>
                 <% end %>
               </div>
             </div>
@@ -38,12 +42,12 @@
   <h3 class="booking-heading">My Horses</h3>
   <div class="main">
       <% @horses.each do |horse| %>
-        <div class="card-trip">
+        <div class="card-trip my-horse">
           <%= link_to horse_path(horse) do %>
             <%= cl_image_tag horse.photos.first.key, class: "image-card" %>
           <% end %>
           <div>
-            <h2><%= horse.name %></h2>
+            <h2 class="text-center">Name: <%= horse.name %></h2>
               <div class="d-flex align-items-center justify-content-end">
                 <%= link_to horse_path(horse) do %>
                   <p class="btn btn-pending">Pending (<%= horse.bookings.where(confirmed: false).count %>)</p>

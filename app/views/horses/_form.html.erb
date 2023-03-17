@@ -6,9 +6,9 @@
   <%= f.input :height %>
   <%= f.input :description %>
   <%= f.input :location,
-  input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
-  wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-  %>
+    input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
+    wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+    %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit 'save' %>
+  <%= f.submit 'save', class: "form-btn" %>
 <% end %>

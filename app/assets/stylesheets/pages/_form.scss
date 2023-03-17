@@ -1,0 +1,30 @@
+.form-box {
+  width: 70%;
+  margin: 15px auto;
+  width: 600px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 9px 1px gray;
+  padding: 15px;
+  line-height: 0px;
+  h2 {
+    text-align: center;
+  }
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 100% !important;
+  font-size: 15px !important;
+  line-height: 20px !important;
+  background-color: whitesmoke !important;
+  box-shadow: none !important;
+  max-width: none  !important;
+}
+
+.form-btn {
+  height: 35px;
+  border-radius: 6px;
+  background-color: $eggplant;
+  color: white;
+  margin: 0px;
+  width: 100%;
+}

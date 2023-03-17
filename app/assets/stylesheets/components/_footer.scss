@@ -1,5 +1,5 @@
 .footer {
-  height: 55px;
+  height: 60px;
   background: white;
   width: 100%;
   display: flex;
@@ -7,6 +7,10 @@
   align-items: center;
   color: $viridian;
   text-align: center;
+  color: white;
+  background-color: $cambridge_blue;
+  position: relative;
+  bottom: 0;
   p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;

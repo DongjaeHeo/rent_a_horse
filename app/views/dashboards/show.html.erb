@@ -42,7 +42,7 @@
   <h3 class="booking-heading">My Horses</h3>
   <div class="main">
       <% @horses.each do |horse| %>
-        <div class="card-trip">
+        <div class="card-trip my-horse">
           <%= link_to horse_path(horse) do %>
             <%= cl_image_tag horse.photos.first.key, class: "image-card" %>
           <% end %>

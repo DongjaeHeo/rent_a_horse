@@ -9,7 +9,7 @@
   <div class="main booking-card">
     <% @bookings.each do |booking| %>
 
-        <div class="card-trip" data-controller="toggle">
+        <div class="card-trip" data-controller="toggle confetti">
           <%= link_to horse_path(booking.horse) do %>
             <%= cl_image_tag booking.horse.photos.first.key, height: 150, width: 250, crop: :fill %>
           <% end %>

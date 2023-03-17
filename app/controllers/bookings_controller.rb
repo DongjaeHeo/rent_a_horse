@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
     @user = User.find(@booking.user_id)
     @booking.errors.add(:booking, 'Horse is already booked') unless @horse.available?(params[:booking][:start_date], params[:booking][:end_date])
     if @booking.update(booking_params)
-      redirect_to horse_booking_path(@horse, @booking)
+      redirect_to dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,7 +56,8 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
 
-    redirect_to horse_bookings_path(@booking.horse), status: :see_other
+    # redirect_to horse_bookings_path(@booking.horse), status: :see_other
+    redirect_to dashboard_path
   end
 
   private

@@ -7,3 +7,26 @@
 .image-card {
   width: 100%;
 }
+
+.btn-pending {
+  border-radius: 30px;
+  color: red;
+  border-color: red;
+  --bs-btn-line-height: 0.6px;
+  --bs-btn-hover-border-color: rgb(255, 220, 45);
+  --bs-btn-hover-color: rgb(255, 220, 45);
+  font-weight: bold;
+}
+
+.fa-solid {
+  margin-right: 3px;
+}
+
+.booking-card {
+  margin-bottom: 100px;
+}
+
+.booking-heading {
+  margin-top: 50px;
+  text-align: center;
+}

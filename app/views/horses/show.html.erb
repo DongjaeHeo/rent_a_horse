@@ -1,33 +1,37 @@
 
 
-<div class="container ">
-  <div class="d-flex relative-position image-shadow bg-white">
-    <div><%= cl_image_tag @horse.photos.first.key, height: 800, width: 800, crop: :fill, class: "image-shadow big-image" %></div>
-    <div>
+<div class="container margin-container">
+  <div class="d-flex relative-position image-shadow bg-white box-radious">
+    <div><%= cl_image_tag @horse.photos.first.key, height: 600, width: 600, crop: :fill, class: "image-shadow big-image box-radious" %></div>
+    <div class="flex-fill p-2">
       <div>
-        <h1><%= @horse.name %></h1>
+        <h1 class="text-center"><strong><%= @horse.name %></strong></h1>
         <div>
-            <h4>Description</h4>
-          <p><%= @horse.description %></p>
+            <h4><strong>Description</strong></h4>
+          <p class="p-3"><%= @horse.description %></p>
         </div>
-        <div>
-          <div class="d-flex">
+        <div >
+           <div class="d-flex">
             <div class="d-flex description_div">
-              <h5>Colour: </h5>
-              <p class="padding-left"><%= @horse.colour %></p>
-            </div>
-             <div class="d-flex description_div">
-              <h5>Breed: </h5>
+              <h5><strong>Breed: </strong></h5>
               <p class="padding-left"><%= @horse.breed %></p>
             </div>
+          </div>
+           <div class="d-flex">
             <div class="d-flex description_div">
-              <h5>Height: </h5>
+              <h5><strong>Colour:</strong></h5>
+              <p class="padding-left"><%= @horse.colour %></p>
+            </div>
+          </div>
+           <div class="d-flex">
+            <div class="d-flex description_div">
+              <h5><strong>Height: </strong>  </h5>
               <p class="padding-left"><%= @horse.height %></p>
             </div>
           </div>
           <div class="d-flex">
             <div class="d-flex description_div">
-              <h5>Location: </h5>
+              <h5><strong>Location:</strong> </h5>
               <p class="padding-left"><%= @horse.location %></p>
             </div>
           </div>
@@ -41,11 +45,15 @@
           <% if user_signed_in?  %>
             <% if current_user.id == @horse.user_id %>
               <div class="display-4 fw-bold text-black text-start mt-0 mb-0 absolute-position padding">
-                <%= link_to 'Delete', horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"}  %>
-                <%= link_to 'Edit', edit_horse_path(@horse)  %>
+                <%= link_to horse_path(@horse), data: { turbo_method: :delete, turbo_confirm: "Are you sure(All bookings related to this horse will be removed)?"} do %>
+                  <i class="fa-solid fa-trash ml-3 fs-2 eggplant"></i>
+                <% end %>
+                <%= link_to edit_horse_path(@horse) do %>
+                  <i class="fa-solid fa-pen bi-justify-right mr-5 fs-2 eggplant"></i>
+                <% end %>
               </div>
             <% else %>
-              <div class="display-4 fw-bold text-black text-center mt-0 mb-0 form-position margin-auto">
+              <div class="display-4 fw-bold text-black text-center mt-0 mb-0 flxe-fill margin-auto">
                 <%= simple_form_for [@horse, @booking] do |f| %>
                   <div>
                     <div class="m-3">
@@ -55,7 +63,7 @@
                       <%= f.date_field :end_date, min: Date.tomorrow, class: "form-font" %>
                     </div>
                     <div class="m-3">
-                      <%= f.submit class: "btn btn-primary" %>
+                      <p class="fs-6"><%= f.submit class: "confirm-button" %></p>
                     </div>
                   </div>
                 <% end %>
@@ -73,33 +81,60 @@
     <% end %>
   </div>
 
+  <% if user_signed_in? %>
+    <% if @horse.user_id == current_user.id %>
+      <div class="d-flex justify-content-around p-5">
 
-  <% if @horse.user_id == current_user.id %>
-    <div>
-      <h1>Pending</h1>
-      <% @horse.bookings.each do |booking| %>
-        <% unless booking.confirmed %>
-          <p>
-            <%= booking.start_date %>
-            <%= booking.end_date %>
-            <%= link_to 'confirm', confirm_horse_booking_path(@horse, booking) %>
-            <div>
-            </div>
-          </p>
+        <% if @horse.bookings.where(confirmed: false).count > 0 %>
+
+          <div class="text-end">
+            <h1 class="text-center"><strong>Pending</strong></h1>
+            <% @horse.bookings.each do |booking| %>
+              <% unless booking.confirmed %>
+                <p class="p-3">
+                  <strong>From:</strong> <%= booking.start_date %>
+                  <strong>To:</strong> <%= booking.end_date %>
+                  <%= link_to 'confirm', confirm_horse_booking_path(@horse, booking), class: "confirm-button" %>
+                  <div>
+                  </div>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+
+        <% end %>
+
+        <% if @horse.bookings.where(confirmed: true).count > 0 %>
+
+        <div class="text-center">
+          <h1><strong>All the bookings</strong></h1>
+          <% @horse.bookings.each do |booking| %>
+            <% if booking.confirmed %>
+              <p class="m-4">
+                <strong>From:</strong> <%= booking.start_date %>
+                <strong>To:</strong> <%= booking.end_date %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+
+        <% end %>
+
+      </div>
+
+    <% else %>
+      <div class="text-center p-5">
+      <% if current_user.bookings.where(horse_id: @horse.id).present? %>
+        <h3><strong>My bookings</strong></h3>
+        <% @bookings.each do |booking| %>
+            <p class="m-4">
+              <strong>From:</strong> <%= booking.start_date %>
+              <strong>To:</strong> <%= booking.end_date %>
+            </p>
         <% end %>
       <% end %>
-    </div>
-    <div>
-      <h1>History</h1>
-      <% @horse.bookings.each do |booking| %>
-        <% if booking.confirmed %>
-          <p>
-            <%= booking.start_date %>
-            <%= booking.end_date %>
-          </p>
-        <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 
 

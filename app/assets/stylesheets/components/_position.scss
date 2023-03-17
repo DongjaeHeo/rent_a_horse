@@ -1,11 +1,11 @@
-.relative-position{
+.relative-position {
   position: relative;
 }
 
 .absolute-position {
-position: absolute;
-bottom: 0;
-right: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .form-position {
@@ -14,7 +14,7 @@ right: 0;
 }
 
 .no-absolute-position {
-position: relative;
+  position: relative;
 }
 
 .form-font {
@@ -31,4 +31,41 @@ position: relative;
 
 .padding-left {
   padding-left: 5px;
+}
+
+.margin-container {
+  margin: 30px auto;
+}
+
+.box-radious {
+  border-radius: 10px;
+}
+
+.confirm-button {
+  color: white;
+  background-color: $eggplant;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.confirm-button:hover {
+  color: white;
+  box-shadow: 0px 0px 3px black;
+}
+
+.eggplant {
+  color: $eggplant;
+}
+
+.eggplant:hover {
+  color: #4b3947;
+}
+
+.font-small {
+  size: 10px;
+}
+
+.big {
+  height: 100px;
 }

@@ -34,6 +34,7 @@ class HorsesController < ApplicationController
 
   def show
     @booking = Booking.new
+    @bookings = current_user.bookings.where(horse_id: @horse.id)
   end
 
   def edit

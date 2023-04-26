@@ -12,6 +12,10 @@ gem "faker"
 
 # #typed js
 
+# Devise (user)
+
+gem "devise"
+
 # gem "typed_js"
 
 # Gemfile
